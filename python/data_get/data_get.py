@@ -38,7 +38,7 @@ for i in corona:
     state_dt.append(i['stateDt'])      # stateDt : 20200801 기준일
     decide_cnt.append(i['decideCnt'])  # decideCnt : 14336 확진자 수
     death_cnt.append(i['deathCnt'])    # deathCnt : 75 사망자 수
-    acc_exam_cnt.append(i['accExamCnt'])   # accExamCnt : 268212 누적 검사 수
+    #acc_exam_cnt.append(i['accExamCnt'])   # accExamCnt : 268212 누적 검사 수
 
 df=pd.DataFrame([state_dt,decide_cnt,death_cnt,acc_exam_cnt]).T
 df.columns=['기준일','확진자 수','사망자 수','누적 검사 수']
