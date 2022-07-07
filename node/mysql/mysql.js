@@ -1,7 +1,7 @@
 var express = require("express");
 var mysql = require("mysql");
 var connection = mysql.createConnection({
-  host : 'database-1.c9tceinqozeu.ap-northeast-2.rds.amazonaws.com',
+  host : 'database-1.crostskxzxwu.ap-northeast-2.rds.amazonaws.com',
   user : 'admin',
   password : 'admin1234',
   database : 'st_db'
