@@ -8,13 +8,14 @@ import pandas as pd
 import xmltodict
 import json
 
-#https://data.gg.go.kr(경기데이터드림)-시티투어정보현황(개방표준)
-key='2a3b8662c28f474883d6d78ce9da3f28'
-url = f'https://openapi.gg.go.kr/Citytourinfostus?serviceKey={key}&'
+
+#https://www.data.go.kr(전국시티투어정보표준데이터)
+key='ytO8MzCAxdTXu0V%2BMZcyr4LxBAGSN7mp5LwqjOb%2F3JehCvI3QB8nGO%2FUETs2Q1JsMCkdM587ybjQo%2FdaDCrvzA%3D%3D'
+url = f'http://api.data.go.kr/openapi/tn_pubr_public_city_tour_api?serviceKey={key}&'
 queryParams = urlencode({ quote_plus('pageNo') : 1,
                           quote_plus('numOfRows') : 10,
-                          #quote_plus('SIGUN_CD'),
-                          #quote_plus('SIGUN_NM'))
+                          quote_plus('ctprvnNm'),  #시도명
+                          quote_plus('signguNm'))  #시군구멩
 url2 = url + queryParams
 
 response = urlopen(url2)
