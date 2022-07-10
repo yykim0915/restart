@@ -4,25 +4,19 @@ var data = JSON.stringify({
     "database": "citytourdb",
     "dataSource": "Cluster0",
     "projection": {
-        "_id": 0,
-        "시도명": 1,
-        "시군구": 1,
-        "시군구": 1,
-        "시티투어코스명",
-        "시티투어탑승장소명",
-        "시티투어코스정보"
+        "_id": 1
     }
 });
 
 var config = {
     method: 'post',
-    url: 'https://data.mongodb-api.com/app/data-noamn/endpoint/data/beta/action/findOne',
+    url: 'https://data.mongodb-api.com/app/data-lfifm/endpoint/data/beta/action/findOne',
     headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Request-Headers': '*',
-        'api-key': 'https://data.mongodb-api.com/app/data-lfifm/endpoint/data/v1'
+      'Content-Type': 'application/json',
+      'Access-Control-Request-Headers': '*',
+      'api-key': '6ezCE7MVrryTHeJI5Ph1CcxUqBAiGjPXBpQxsMXzDG2BoV07HqoIZPHgvpM4HYGu',
     },
-    data : data
+    data: data
 };
 
 axios(config)
