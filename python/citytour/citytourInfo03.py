@@ -1,18 +1,26 @@
 import pandas as pd
-import openpyxl
-from statistics import mean
+import folium
+#import openpyxl
 
-
-# fname='./data/citytour.xlsx'
-# sam = pd.ExcelFile(fname)
-# print(sam)
 
 filePath = r'./data/citytour.xlsx'
 df_from_excel = pd.read_excel(filePath,engine='openpyxl')
-df_from_excel.columns = df_from_excel.loc[0].tolist()
-print(df_from_excel.head())
-print(df_from_excel['SIGNGU_NM'].values)
-print(df_from_excel['CITYTOUR_COURSE_NM'].values)
-print(df_from_excel['CITYTOUR_COURSE_INFO'].values)
-print(df_from_excel['위도'].values)
-print(df_from_excel['경도'].values)
+#df_from_excel = pd.read_excel(filePath,engine='openpyxl',header=None)
+
+df_from_excel.columns = ['CITYTOUR_COURSE_INFO','addrs','x','y']
+
+name_list = df_from_excel['CITYTOUR_COURSE_INFO'].to_list()
+addr_list = df_from_excel['addrs'].to_list()
+position_x_list = df_from_excel['x'].to_list()
+position_y_list = df_from_excel['y'].to_list()
+
+map = folium.Map(location=[37,127],zoom_start=7)
+
+for i in range(len(name_list)):
+    if position_x_list[i] != 0:
+        marker = folium.Marker([position_y_list[i],position_x_list[i]],
+                            popup=name_list[i],
+                            icon = folium.Icon(color='blue'))
+        marker.add_to(map)
+
+map.save(r'./data/map_citytourInfo03.html')

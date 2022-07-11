@@ -21,5 +21,5 @@ folium.CircleMarker([latitude, longitude],
                     tooltip='big data').add_to(map_osm)
 
 map_osm.save('./data/map01.html')
-webbrowser.open('file://'+ os.path.realpath('./data/map02.html'))
+webbrowser.open('file://'+ os.path.realpath('./data/map01.html'))
 print('map01 save')
