@@ -1,2 +1,3 @@
+#!/bin/bash
 
-mongoimport -d citytourdb -c citytour --headerline --type csv --drop citytour.csv
+mongoimport -d test -c citytour --headerline --type csv --drop citytour.csv
