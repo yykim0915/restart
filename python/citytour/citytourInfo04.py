@@ -25,3 +25,4 @@ db = client['test'] #mongDB Compass-test에 접속
 #test(db)-citytourinfo(collection) 데이터 출력하기
 for d in db['citytourinfo'].find():
      print(d['SIGUN_CD'], d['SIGUN_NM']), d['CITYTOUR_COURSE'], d['CITYTOUR_COURSE_INFO'], d['addr'], d['latitude'], d['longitude']
+#print(db.citytourinfo.find_one({'CITYTOUR_COURSE':'가평시티투어'})['text'])
