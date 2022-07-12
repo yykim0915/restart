@@ -35,11 +35,11 @@ def citytourinfo_map(default_location=[35.53898, 129.31125], default_zoom_start=
 for row in df_final.itertuples():
     SIGUN_CD, SIGUN_NM, CITYTOUR_COURSE, CITYTOUR_COURSE_INFO, addr, latitude, longitude = row[1:]
     if CITYTOUR_COURSE_INFO == '가평시티투어':
-        icon = Icon(color='red', icon='info-sign')
+        icon = Icon(color = 'red', icon = 'info-sign')
     elif CITYTOUR_COURSE_INFO == '여주시티투어':
-        icon = Icon(color='blue', icon='info-sign')
+        icon = Icon(color = 'blue', icon = 'info-sign')
     elif CITYTOUR_COURSE_INFO == '파주시티투어':
-        icon = Icon(color='yellow', icon='info-sign')
+        icon = Icon(color = 'yellow', icon = 'info-sign')
     else:
         break
 
@@ -50,8 +50,9 @@ for row in df_final.itertuples():
 #map Marker 클릭시 popup
 Marker(location=[latitude,longitude], popup=f'시티투어코스정보 : {CITYTOUR_COURSE_INFO}', icon = icon).add_to(base_map)
 base_map.save('./data/map_citytourInfo03.html')
-return base_map
+#return base_map
 
 #map 시각화하기
+#webbrowser.open('file://'+ os.path.realpath('./data/map_citytourInfo03.html'))
 print('citytourinfo 맵')
 citytourinfo_map()
