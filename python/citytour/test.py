@@ -1,25 +1,24 @@
-from urllib.request import urlopen
-from urllib.parse import urlencode, unquote, quote_plus
-import datetime
-from dateutil.relativedelta import relativedelta
-import urllib
-import requests
 import pandas as pd
-import xmltodict
-import json
+import folium
+import openpyxl
 
-#https://data.gg.go.kr(경기데이터드림)-시티투어정보현황(개방표준)
-key='2a3b8662c28f474883d6d78ce9da3f28'
-url = f'https://openapi.gg.go.kr/Citytourinfostus?serviceKey={key}&'
-queryParams = urlencode({ quote_plus('pageNo') : 1,
-                          quote_plus('numOfRows') : 10,
-                          quote_plus('SIGUN_CD'),    #경기도
-                          quote_plus('SIGUN_NM'))    #가평군
-url2 = url + queryParams
+filePath = r'./data/학교주소좌표.xlsx'
+df_from_excel = pd.read_excel(filePath,engine='openpyxl',header=None)
 
-response = urlopen(url2)
-results = response.read().decode("utf-8")
-results_to_json = xmltodict.parse(results)
-data = json.loads(json.dumps(results_to_json))
-print(type(data))   # dic
-print(data)
+df_from_excel.columns = ['학교이름','주소','x','y']
+
+name_list = df_from_excel['학교이름'].to_list()
+addr_list = df_from_excel['주소'].to_list()
+position_x_list = df_from_excel['x'].to_list()
+position_y_list = df_from_excel['y'].to_list()
+
+map = folium.Map(location=[37,127],zoom_start=7)
+
+for i in range(len(name_list)):
+    if position_x_list[i] != 0:
+        marker = folium.Marker([position_y_list[i],position_x_list[i]],
+                            popup=name_list[i],
+                            icon = folium.Icon(color='blue'))
+        marker.add_to(map)
+
+map.save(r'./data/test01.html')
