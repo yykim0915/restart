@@ -52,7 +52,7 @@ def get_request_url(pageNo, numOfRows):
 def make_file(fileData, fileType):
     if fileType == 'TXT':
         print(fileData)
-        file = open('./data/citytourInfo02.txt','w',encoding='UTF-8')
+        file = open('./data/Citytourinfostus02.txt','w',encoding='UTF-8')
         file.write(str(fileData))
         file.close()
         print('filesave')
@@ -60,13 +60,13 @@ def make_file(fileData, fileType):
 
     elif fileType == 'CSV':
         dataFrame = pd.DataFrame(fileData)
-        dataFrame.to_csv('./data/citytourInfo02.csv' , encoding='utf-8', mode='w')
+        dataFrame.to_csv('./data/Citytourinfostus02.csv' , encoding='utf-8', mode='w')
         print('filesave')
         print()
 
     elif fileType == 'XLSX':
         dataFrame = pd.DataFrame(fileData)
-        dataFrame.to_excel('./data/citytourInfo02.xlsx',sheet_name='mysheet')
+        dataFrame.to_excel('./data/Citytourinfostus02.xlsx',sheet_name='mysheet')
         print('filesave')
         print()
 
@@ -74,7 +74,7 @@ def make_file(fileData, fileType):
         dataFrame = pd.DataFrame(fileData)
         result = dataFrame.to_json(orient="split")
         parsed = json.loads(result)
-        file = open('./data/citytourInfo02.json','w',encoding='UTF-8')
+        file = open('./data/Citytourinfostus02.json','w',encoding='UTF-8')
         file.write(json.dumps(parsed, indent=4, sort_keys=True, ensure_ascii=False))
         file.close()
         print('filesave')

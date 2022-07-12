@@ -49,5 +49,5 @@ print(data)
 # df=df.sort_values(by='기준일', ascending=True)
 #
 #
-# df.to_csv('./data/citytourInfo.csv') # csv 파일생성
-# df.to_csv('./data/citytourInfo.txt') # txt 파일생성
+# df.to_csv('./data/Citytourinfostus.csv') # csv 파일생성
+# df.to_csv('./data/Citytourinfostus.txt') # txt 파일생성
