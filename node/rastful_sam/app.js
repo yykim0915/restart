@@ -13,11 +13,8 @@ app.use(bodyParser.urlencoded({ extended : false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://13.125.166.42:27017/life')
-
-var mongo = require('./routes/mongo.js')
-app.use('/', mongo)
+var restful = require('./routes/restful.js')
+app.use('/', restful)
 
 app.listen(app.get('port'), () => {
   console.log('3000 Port : Server Started...')

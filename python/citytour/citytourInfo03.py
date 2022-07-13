@@ -15,8 +15,8 @@ print(score)
 
 #-----------------------------------------
 #map에 필요한 column만 저장
-#df_mapsample = df['CITYTOUR_COURSE','CITYTOUR_COURSE_INFO','addr','x','y']
-#print(df_mapsample)
+# df_mapsample = df['CITYTOUR_COURSE','CITYTOUR_COURSE_INFO','addr','latitude','longitude']
+# print(df_mapsample)
 
 #data null값 확인하기
 # print('data null값 확인')
@@ -31,7 +31,7 @@ print(score)
 def citytourinfo_map(default_location=[35.53898, 129.31125], default_zoom_start=20):
     base_map = folium.Map(location=darault_location, control_scale=True, zoom_start=default_zoom_start)
 
-#itertuples() tuple을 반복하는 객체 반환
+itertuples() tuple을 반복하는 객체 반환
 for row in df_final.itertuples():
     SIGUN_CD, SIGUN_NM, CITYTOUR_COURSE, CITYTOUR_COURSE_INFO, addr, latitude, longitude = row[1:]
     if CITYTOUR_COURSE == '가평시티투어':
@@ -50,7 +50,7 @@ print(row)
 #map Marker 클릭시 popup
 Marker(location=[latitude,longitude], popup=f'시티투어코스정보 : {CITYTOUR_COURSE_INFO}', icon = icon).add_to(base_map)
 base_map.save('./data/map_citytourInfo03.html')
-#return base_map
+return base_map
 
 #map 시각화하기
 #webbrowser.open('file://'+ os.path.realpath('./data/map_citytourInfo03.html'))

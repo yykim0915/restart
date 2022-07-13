@@ -9,7 +9,7 @@ const mongoClient = require('mongodb').MongoClient
 let today = new Date();
 var now = today.toFormat("YYYYMMDDHH");
 
-var keys='ytO8MzCAxdTXu0V%2BMZcyr4LxBAGSN7mp5LwqjOb%2F3JehCvI3QB8nGO%2FUETs2Q1JsMCkdM587ybjQo%2FdaDCrvzA%3D%3D'
+var keys='B%2FNiJnYmkZV1%2FK7ulvZI4MoSXvCTDfNAd0Snw%2Bk6g4%2BbMk1LoGVhd75DJahjv4K35Cr9jh9RX0j%2BM89grKBYsw%3D%3D'
 var url = 'http://apis.data.go.kr/1360000/LivingWthrIdxServiceV2/getUVIdxV2';
 var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + keys; /* Service Key*/
 queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /* */

@@ -7,13 +7,8 @@ import numpy as np
 from config  import *
 #import matplotlib.pyplot as plt
 
-#------------------------
-# 접속 get_request_url( )
-# 데이터처리 main()
-# csv저장함수 make_file()
-#------------------------
-#https://data.gg.go.kr(경기데이터드림)-시티투어정보현황(개방표준)
 
+#data-https://data.gg.go.kr(경기데이터드림)-시티투어정보현황(개방표준)
 
 result = []
 
