@@ -1,4 +1,4 @@
 Host ubuntu
-    Hostname 13.125.166.42
+    Hostname 3.38.64.25
     User root
     IdentityFile ~/.ssh/mykey.pem
