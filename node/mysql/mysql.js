@@ -5,6 +5,11 @@ var connection = mysql.createConnection({
   user : 'admin',
   password : 'admin1234',
   database : 'st_db'
+
+  // host : 13.125.166.42:3306,
+  // user : 'admin',
+  // password : '1234',
+  // database : 'test'
 })
 
 var app = express();
@@ -18,7 +23,7 @@ connection.connect(function(err) {
 });
 
 app.get('/', function(req, res) {
-  connection.query('select * from st_info', function(err, rows, fields) {
+  connection.query('select * from test', function(err, rows, fields) {
     connection.end();
     if(!err) {
       res.send(rows);

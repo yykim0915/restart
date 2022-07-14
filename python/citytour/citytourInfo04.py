@@ -2,10 +2,10 @@
 #pip install pymongo
 from pymongo import MongoClient
 
-client = MongoClient("mongodb://13.125.166.42:27017/")
-db = client['test'] #mongDB Compass-test에 접속
-#print(client.list_database_names())
-#[READ_ME_TO_REOVER_YOUR_DATA ~ ~]
+client = MongoClient("mongodb://13.125.166.42:27017")
+db = client['test'] #DBname(test)에 접속
+print(client.list_database_names())
+#['READ__ME_TO_RECOVER_YOUR_DATA', 'admin', 'config', 'test']
 
 
 #test(db)-citytourinfo(collection) 데이터 입력하기
@@ -31,6 +31,6 @@ db = client['test'] #mongDB Compass-test에 접속
 
 
 #test(db)-citytourinfo(collection) 데이터 출력하기
-for d in db['citytourinfo'].find():
-    print(d['SIGUN_CD'], d['SIGUN_NM']), d['CITYTOUR_COURSE'], d['CITYTOUR_COURSE_INFO'], d['addr'], d['latitude'], d['longitude']
+ for d in db['citytourinfo'].find():
+     print(d['SIGUN_CD'], d['SIGUN_NM']), d['CITYTOUR_COURSE'], d['CITYTOUR_COURSE_INFO'], d['addr'], d['latitude'], d['longitude']
 #print(db.citytourinfo.find_one({'CITYTOUR_COURSE':'가평시티투어'})['text'])

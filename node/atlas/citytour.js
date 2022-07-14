@@ -1,7 +1,7 @@
 var axios = require('axios');
 var data = JSON.stringify({
     "collection": "citytour",
-    "database": "citytourdb",
+    "database": "test",
     "dataSource": "Cluster0",
     "projection": {
         "_id": 1

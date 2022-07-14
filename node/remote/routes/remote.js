@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended : true }))
 let urls = ""
 
 app.get("/Hello", (req, res)=> {
-  urls = "http://13.209.234.117:3000/Hello"
+  urls = "http://13.125.166.42:8000/Hello"
   request(urls, { json:true }, (err, result, body) => {
     if (err) { return console.log(err) }
     res.send(CircularJSON.stringify(body))
@@ -23,7 +23,7 @@ app.get("/Hello", (req, res)=> {
 
 app.get("/api/users", (req, res) => {
   axios
-    .get('http://13.209.234.117:3000/api/users')
+    .get('http://13.125.166.42:8000/api/users')
     .then(result => {
       res.send(CircularJSON.stringify(result.data))
     })
@@ -35,9 +35,9 @@ app.get("/api/users", (req, res) => {
 // Query params
 app.get("/api/users/user", (req, res) => {
   if(req.query.name == null) {
-    urls = "http://13.209.234.117:3000/api/users/user?user_id="+req.query.user_id;
+    urls = "http://13.125.166.42:8000/api/users/user?user_id="+req.query.user_id;
   } else {
-    urls = "http://13.209.234.117:3000/api/users/user?user_id="+req.query.user_id+"&name="+req.query.name;
+    urls = "http://13.125.166.42:8000/api/users/user?user_id="+req.query.user_id+"&name="+req.query.name;
   }
   request(urls, { json:true }, (err, result, body) => {
     if (err) { return console.log(err) }
@@ -47,7 +47,7 @@ app.get("/api/users/user", (req, res) => {
 
 // path Variables
 app.get("/api/users/:user_id", (req, res) => {
-  urls = "http://13.209.234.117:3000/api/users/"+req.params.user_id;
+  urls = "http://13.125.166.42:8000/api/users/"+req.params.user_id;
   request(urls, { json:true }, (err, result, body) => {
     if (err) { return console.log(err) }
     res.send(CircularJSON.stringify(body))
@@ -57,7 +57,7 @@ app.get("/api/users/:user_id", (req, res) => {
 // post
 app.post("/api/users/userBody", (req, res) => {
   const options = {
-    uri : 'http://13.209.234.117:3000/api/users/userBody',
+    uri : 'http://13.125.166.42:8000/api/users/userBody',
     method : 'POST',
     form : { id : req.body.id }
   }
@@ -70,7 +70,7 @@ app.post("/api/users/userBody", (req, res) => {
 // post add
 app.post("/api/users/add", (req, res) => {
   const options = {
-    uri : 'http://13.209.234.117:3000/api/users/add',
+    uri : 'http://13.125.166.42:8000/api/users/add',
     method : 'POST',
     form : {
       id : req.body.id,
@@ -86,7 +86,7 @@ app.post("/api/users/add", (req, res) => {
 // put
 app.put("/api/users/update", (req, res) => {
   const options = {
-    uri : 'http://13.209.234.117:3000/api/users/update',
+    uri : 'http://13.125.166.42:8000/api/users/update',
     method : 'PUT',
     form : {
       id : req.body.id,
@@ -102,7 +102,7 @@ app.put("/api/users/update", (req, res) => {
 // patch
 app.patch("/api/users/update/:user_id", (req, res) => {
   const options = {
-    uri : 'http://13.209.234.117:3000/api/users/'+req.params.id,
+    uri : 'http://13.125.166.42:8000/api/users/'+req.params.id,
     method : 'PATCH',
     form : {
       id : req.params.id,
@@ -118,7 +118,7 @@ app.patch("/api/users/update/:user_id", (req, res) => {
 // delete
 app.delete("/api/users/delete", (req, res) => {
   const options = {
-    uri : 'http://13.209.234.117:3000/api/users/delete',
+    uri : 'http://13.125.166.42:8000/api/users/delete',
     method : 'DLETE',
     form : {
       id : req.body.user_id
