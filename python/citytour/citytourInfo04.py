@@ -2,7 +2,7 @@
 #pip install pymongo
 from pymongo import MongoClient
 
-client = MongoClient("mongodb://13.125.166.42:27017")
+client = MongoClient("mongodb://3.38.64.25:27017")
 db = client['test'] #DBname(test)에 접속
 print(client.list_database_names())
 #['READ__ME_TO_RECOVER_YOUR_DATA', 'admin', 'config', 'test']

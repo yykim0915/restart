@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended : true }))
 let urls = ""
 
 app.get("/Hello", (req, res)=> {
-  urls = "http://13.125.166.42:8000/Hello"
+  urls = "http://3.38.64.25:8000/Hello"
   request(urls, { json:true }, (err, result, body) => {
     if (err) { return console.log(err) }
     res.send(CircularJSON.stringify(body))

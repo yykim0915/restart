@@ -14,7 +14,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://13.125.166.42:27017/life')
+mongoose.connect('mongodb://3.38.64.25/life')
 
 var mongo = require('./routes/mongo.js')
 app.use('/', mongo)
