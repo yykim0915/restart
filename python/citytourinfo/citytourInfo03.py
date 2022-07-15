@@ -20,7 +20,7 @@ print(score)
 #map 시각화하기(zoom값은 0~20까지)
 def citytourinfo_map(default_location=[35.53898, 129.31125], default_zoom_start=20):
     base_map = folium.Map(location=darault_location, control_scale=True, zoom_start=default_zoom_start)
-    
+
     #itertuples - tuple을 반복하는 객체 반환
     for row in df.itertuples():
         SIGUN_CD, SIGUN_NM, CITYTOUR_COURSE, CITYTOUR_COURSE_INFO, addr, latitude, longitude = row[1:]

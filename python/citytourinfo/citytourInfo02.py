@@ -1,101 +1,52 @@
+from urllib.request import urlopen
+from urllib.parse import urlencode, unquote, quote_plus
+import datetime
+from dateutil.relativedelta import relativedelta
+import urllib
 import requests
-import json
-import math
-import xml.etree.ElementTree as ET
 import pandas as pd
-import numpy as np
-from config  import *
-#import matplotlib.pyplot as plt
+import xmltodict
+import json
 
 
-#data-https://data.gg.go.kr(경기데이터드림)-시티투어정보현황(개방표준)
+#https://www.data.go.kr(공공데이터포털)-기상청_관광코스별 관광지 상세 날씨 조회서비스
+key='ytO8MzCAxdTXu0V%2BMZcyr4LxBAGSN7mp5LwqjOb%2F3JehCvI3QB8nGO%2FUETs2Q1JsMCkdM587ybjQo%2FdaDCrvzA%3D%3D'
+url = f'http://apis.data.go.kr/1360000/TourStnInfoService/getTourStnVilageFcst?serviceKey={key}&'
+queryParams = urlencode({ quote_plus('pageNo') : 1,
+                          quote_plus('numOfRows') : 10,
+                          quote_plus('dataType') : json,             #(XML/JSON)
+                          quote_plus('CURRENT_DATE') : 2022070110,   #(2019122010)
+                          quote_plus('HOUR') : 24,                   #예보기간(24)
+                          quote_plus('COURSE_ID') : 55})              #코스ID(1)
+url2 = url + queryParams
 
-result = []
+response = urlopen(url2)
+results = response.read().decode("utf-8")
+results_to_json = xmltodict.parse(results)
+data = json.loads(json.dumps(results_to_json))
+print(type(data))   # dic
+print(data)
 
-def get_totalCount_fromUrl():
-    url='https://openapi.gg.go.kr/Citytourinfostus'
-    parameter =  '?ServiceKey='+ serviceKey
-    parameter += '&pageNo=1'
-    parameter += '&numOfRows=10'
-    url += parameter
-    res = requests.get(url)
+Tourweather=data['response']['body']['items']['item']
+#추가하고 싶은 리스트 생성
+courseAreaId=[]
+courseAreaName=[]
+maxTa=[]
+minTa=[]
+sky=[]
+pop=[]
 
-    if res.status_code == 200 :
-        root = ET.fromstring(res.text)
-        #totalCount = int(root.find('body').find('totalCount').text)
-        totalCount = int(root.find('response').find('body').find('items').text)
-        return totalCount
-    else:
-        print(url, '접속실패')
-        return None
+for i in Tourweather:
+    courseAreaId.append(i['courseAreaId'])
+    courseAreaName.append(i['courseAreaName'])
+    maxTa.append(i['maxTa'])
+    minTa.append(i['minTa'])
+    sky.append(i['sky'])
+    pop.append(i['pop'])
 
+df=pd.DataFrame([courseAreaId,courseAreaName,maxTa,minTa,sky,pop]).T
+df.columns=['코스-지역아이디','코스-지역이름','최고기온','최저기온','하늘상태','강수확률']
+df=df.sort_values(by='코스-지역아이디', ascending=True)
 
-def get_request_url(pageNo, numOfRows):
-    url='https://openapi.gg.go.kr/Citytourinfostus'
-    parameter =  '?serviceKey='+ serviceKey
-    parameter += '&pageNo=' + str(pageNo)
-    parameter += '&numOfRows=' + str(numOfRows)
-    url = url  + parameter
-
-    res = requests.get(url)
-    if res.status_code == 200 :
-        return res.text
-    else:
-        print(url, '접속실패')
-
-
-def make_file(fileData, fileType):
-    if fileType == 'TXT':
-        print(fileData)
-        file = open('./data/Citytourinfostus02.txt','w',encoding='UTF-8')
-        file.write(str(fileData))
-        file.close()
-        print('filesave')
-        print()
-
-    elif fileType == 'CSV':
-        dataFrame = pd.DataFrame(fileData)
-        dataFrame.to_csv('./data/Citytourinfostus02.csv' , encoding='utf-8', mode='w')
-        print('filesave')
-        print()
-
-    elif fileType == 'XLSX':
-        dataFrame = pd.DataFrame(fileData)
-        dataFrame.to_excel('./data/Citytourinfostus02.xlsx',sheet_name='mysheet')
-        print('filesave')
-        print()
-
-    elif fileType == 'JSON':
-        dataFrame = pd.DataFrame(fileData)
-        result = dataFrame.to_json(orient="split")
-        parsed = json.loads(result)
-        file = open('./data/Citytourinfostus02.json','w',encoding='UTF-8')
-        file.write(json.dumps(parsed, indent=4, sort_keys=True, ensure_ascii=False))
-        file.close()
-        print('filesave')
-        print()
-
-
-def main():
-    parsedData = pd.DataFrame()
-    nEndPage = 1
-    pageNo = 1
-    numOfRows = 10
-
-    totalCount = get_totalCount_fromUrl()
-    print('totalCount =',totalCount )
-    nEndPage = math.ceil(totalCount/numOfRows)
-    print('nEndPage =',nEndPage )
-
-    for pageNo in range(1, nEndPage+1):
-        rawData = get_request_url(pageNo, numOfRows)
-        result = pd.read_xml(rawData, xpath='.//item')
-        parsedData = pd.concat([parsedData, result])
-
-    make_file(parsedData, 'TXT')
-    make_file(parsedData, 'CSV')
-    make_file(parsedData, 'XLSX')
-    make_file(parsedData, 'JSON')
-
-#if __name__ == '__main__':
-main()
+df.to_csv('./data/TourStnInfoService.csv') # csv 파일생성
+df.to_csv('./data/TourStnInfoService.txt') # txt 파일생성

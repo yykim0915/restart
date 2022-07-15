@@ -32,7 +32,7 @@ corona=data['response']['body']['items']['item']
 state_dt=[]
 decide_cnt=[]
 death_cnt=[]
-acc_exam_cnt=[]
+#acc_exam_cnt=[]
 
 for i in corona:
     state_dt.append(i['stateDt'])      # stateDt : 20200801 기준일
