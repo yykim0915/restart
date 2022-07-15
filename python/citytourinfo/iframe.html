@@ -3,10 +3,13 @@
 <head>
 <meta charset="utf-8">
 <title>iframe</title>
-<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 function openWindowPop(url, name){
     var options = 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no';
+    window.open(url, name, options);
+
+function openWindowPop02(url, name){
+    var options = 'top=40, left=40, width=100, height=100, status=no, menubar=no, toolbar=no, resizable=no';
     window.open(url, name, options);
 }
 </script>
@@ -20,8 +23,9 @@ function openWindowPop(url, name){
 
 <div class="">
     <a href="https://www.data.go.kr" target="_blank">팝업창 열기1(_blank)</a><br>
-    <a href="javascript:openWindowPop('https://www.data.go.kr', 'popup');">팝업창 열기2(javascript)</a><br>
-    <a href="javascript:window.open('https://www.data.go.kr', '_blank'); top=40, left=40, width=100, height=100">팝업창 열기3(javascript)</a><br>
+    <a href="javascript:openWindowPop('https://www.data.go.kr', 'popup');">팝업창 열기2-1(javascript)</a><br>
+    <a href="javascript:openWindowPop02('https://data.gg.go.kr', 'popup');">팝업창 열기2-2(javascript)</a><br>
+    <a href="javascript:window.open('https://www.data.go.kr', '_blank')", "top=40, left=40, width=100, height=100";>팝업창 열기3(javascript)</a><br>
     <a href="" onclick="popupid01.iframe01.location.href='iframe01.html';" target="iframe02">팝업창 열기4(iframe01->iframe02)</a><br>
     <a href="" onclick="document.location.href='https://www.data.go.kr';">팝업창 열기5(_self)</a><br>
 
