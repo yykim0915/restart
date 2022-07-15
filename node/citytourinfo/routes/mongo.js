@@ -20,8 +20,8 @@ queryParams += '&' + encodeURIComponent('SIGUN_NM') + '=' + encodeURIComponent('
 //define scheme
 var dataSchema = mongoose.Schema({
       SIDO_NM : Number,
-      SIGNGU_NM : Number,
-      CITYTOUR_COURSE_NM : Number
+      SIGNGU_NM : Varchart,
+      CITYTOUR_COURSE_NM : Varchart
 });
 
 var Citytour = mongoose.model('Citytourinfostus',dataSchema);

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>iframe</title>
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function openframe(url) {
+    $('#myframe').attr('src', url);
+}
+</script>
+<style type="text/css">
+    #myframe { }
+</style>
+</head>
+<body>
+    <button onclick='openframe("https://www.data.go.kr")'>공공데이터포털 이동</button><br>
+    <iframe id="myframe" width="300" height="200"></iframe>
+
+</body>
+</html>

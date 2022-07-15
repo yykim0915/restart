@@ -3,23 +3,29 @@
 <head>
 <meta charset="utf-8">
 <title>iframe</title>
-<script type="text/javascript">
-
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function openWindowPop(url, name){
+    var options = 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no';
+    window.open(url, name, options);
+}
 </script>
+<style type="text/css"></style>
 </head>
 <body>
-    <iframe id="idpopup" name="iframe01" title="" width="200" height="400">
-        <!-- <a href="#" onclick='document.view.location.href="iframe02"'>button</a> -->
-        <!-- input type="button" value="" onclick='document.targetURL.location.href="iframe02"'> -->
-        <a href="javascript:();" onclick="idpopup.iframe01.location.href='iframe02'">button</a>
-        지도정보<br>
-        지도정보<br>
-        지도정보
-    </iframe>
-    <iframe src="https://www.naver.com" name="iframe02" width="200" height="200" scrolling="auto" frameborder="1"></iframe>
-    숙박정보<br>
-    숙박정보<br>
-    숙박정보<br>
-    <a href="" onclick='document.view.location.href="iframe02"'>button</a>
+
+<iframe src="iframe01.html" id="popupid01" name="iframe01" width="300" height="400"></iframe>
+<iframe src="" id="popupid02" name="iframe02" width="300" height="200"></iframe>
+<iframe src="https://www.data.go.kr" width="300" height="400"></iframe>
+
+<div class="">
+    <a href="https://www.data.go.kr" target="_blank">팝업창 열기1(_blank)</a><br>
+    <a href="javascript:openWindowPop('https://www.data.go.kr', 'popup');">팝업창 열기2(javascript)</a><br>
+    <a href="javascript:window.open('https://www.data.go.kr', '_blank'); top=40, left=40, width=100, height=100">팝업창 열기3(javascript)</a><br>
+    <a href="" onclick="popupid01.iframe01.location.href='iframe01.html';" target="iframe02">팝업창 열기4(iframe01->iframe02)</a><br>
+    <a href="" onclick="document.location.href='https://www.data.go.kr';">팝업창 열기5(_self)</a><br>
+
+</div>
+
 </body>
 </html>
