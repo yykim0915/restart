@@ -14,8 +14,8 @@ key='2a3b8662c28f474883d6d78ce9da3f28'
 url = f'https://openapi.gg.go.kr/Citytourinfostus?serviceKey={key}&'
 queryParams = urlencode({ quote_plus('pageNo') : 1,
                           quote_plus('numOfRows') : 10,
-                          quote_plus('SIGUN_CD') : 4182000000,     #시군코드:가평군(4182000000)
-                          quote_plus('SIGUN_NM') : 4182003001})   #시군명
+                          quote_plus('SIGUN_CD'),    #시군코드:가평군(4182000000)
+                          quote_plus('SIGUN_NM')})   #시군명
 url2 = url + queryParams
 
 response = urlopen(url2)
@@ -42,7 +42,7 @@ for i in citytour:
 
 df=pd.DataFrame([SIDO_NM,SIGNGU_NM,CITYTOUR_COURSE_NM,CITYTOUR_BRDNG_PLC_INFO,CITYTOUR_COURSE_INFO]).T
 df.columns=['시도명','시군구명','시티투어코스명','시티투어탑승장소명','시티투어코스정보']
-df=df.sort_values(by='기준일', ascending=True)
+df=df.sort_values(by='시도명', ascending=True)
 
 
 df.to_csv('./data/Citytourinfostus.csv') # csv 파일생성

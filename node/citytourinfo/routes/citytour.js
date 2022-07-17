@@ -57,7 +57,7 @@ def citytourinfo_map(default_location=[35.53898, 129.31125], default_zoom_start=
 
   Marker(location=[latitude,longitude],
       popup=f'시티투어코스정보 : {CITYTOUR_COURSE_INFO}', icon = icon).add_to(base_map)
-  base_map.save('./data/map_citytourInfo03.html')
+  base_map.save('map_citytourinfo.html')
   #return base_map
 
 print('citytourinfo 맵')

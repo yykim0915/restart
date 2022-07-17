@@ -9,7 +9,7 @@ import xmltodict
 import json
 
 
-#https://www.data.go.kr(공공데이터포털)-기상청_관광코스별 관광지 상세 날씨 조회서비스
+#https://www.data.go.kr(공공데이터포털)-기상청_관광코스별 관광지상세날씨 조회서비스
 key='ytO8MzCAxdTXu0V%2BMZcyr4LxBAGSN7mp5LwqjOb%2F3JehCvI3QB8nGO%2FUETs2Q1JsMCkdM587ybjQo%2FdaDCrvzA%3D%3D'
 url = f'http://apis.data.go.kr/1360000/TourStnInfoService/getTourStnVilageFcst?serviceKey={key}&'
 queryParams = urlencode({ quote_plus('pageNo') : 1,
@@ -17,7 +17,7 @@ queryParams = urlencode({ quote_plus('pageNo') : 1,
                           quote_plus('dataType') : json,             #(XML/JSON)
                           quote_plus('CURRENT_DATE') : 2022070110,   #(2019122010)
                           quote_plus('HOUR') : 24,                   #예보기간(24)
-                          quote_plus('COURSE_ID') : 55})              #코스ID(1)
+                          quote_plus('COURSE_ID') : 55})             #코스ID(1)
 url2 = url + queryParams
 
 response = urlopen(url2)
