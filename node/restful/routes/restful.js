@@ -2,16 +2,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const dfd = require('dataframe-js')
 
-//mongodbCompass
-// from pymongo import MongoClient
-// client = MongoClient("mongodb://3.38.64.25:27017")
-// db = client['test']
-
-// for d in db['citytourinfo'].find():
-//     print(d['SIGUN_CD'], d['SIGUN_NM']), d['CITYTOUR_COURSE'], d['CITYTOUR_COURSE_INFO'], d['addr'], d['latitude'], d['longitude']
-//mongodbCompass
-
-
 const app = express()
 
 app.use(bodyParser.json())
@@ -28,45 +18,6 @@ const users = [
 app.get("/Hello", (req, res)=> {
   res.send("Hello World")
 })
-
-
-//citytourinfo Marker
-app.get("/api/citytour", (req, res) => {
-fname = '/data/mongo/citytourinfo.csv'
-score = pd.read_csv(fname, encoding = 'cp949')
-print(score)
-
-def citytourinfo_map(default_location=[35.53898, 129.31125], default_zoom_start=20):
-    base_map = folium.Map(location=darault_location, control_scale=True, zoom_start=default_zoom_start)
-
-  //itertuples - tuple을 반복하는 객체 반환
-  for row in df.itertuples():
-      SIGUN_CD, SIGUN_NM, CITYTOUR_COURSE, CITYTOUR_COURSE_INFO, addr, latitude, longitude = row[1:]
-      if CITYTOUR_COURSE == '가평시티투어':
-          icon = Icon(color = 'red', icon = 'info-sign')
-      elif CITYTOUR_COURSE == '여주시티투어':
-          icon = Icon(color = 'blue', icon = 'info-sign')
-      elif CITYTOUR_COURSE == '파주시티투어':
-          icon = Icon(color = 'yellow', icon = 'info-sign')
-      else:
-          break
-
-  for row in df.itertuples():
-      SIGUN_CD, SIGUN_NM, CITYTOUR_COURSE, CITYTOUR_COURSE_INFO, addr, latitude, longitude = row[1:]
-      print(row)
-
-  Marker(location=[latitude,longitude],
-      popup=f'시티투어코스정보 : {CITYTOUR_COURSE_INFO}', icon = icon).add_to(base_map)
-  base_map.save('./data/map_citytourInfo03.html')
-  #return base_map
-
-print('citytourinfo 맵')
-citytourinfo_map()
-})
-//citytourinfo Marker
-
-
-
 
 app.get("/api/users", (req, res) => {
   let df = new dfd.DataFrame(users);
@@ -85,6 +36,71 @@ app.get("/api/users", (req, res) => {
     </html>
   `;
   res.end(template)
+})
+
+// Query params
+app.get("/api/users/user", (req, res) => {
+  const user_id = req.query.user_id
+  const user = users.filter(data => data.id == user_id)
+  res.json({ok: false, user: user})
+})
+
+// path Variables
+app.get("/api/users/:user_id", (req, res) => {
+  const user_id = req.params.user_id
+  const user = users.filter(data => data.id == user_id)
+  res.json({ok: true, user: user})
+})
+
+// post
+app.post("/api/users/userBody", (req, res) => {
+  const user_id = req.body.id
+  const user = users.filter(data => data.id == user_id)
+  res.json({ok: true, user: user})
+})
+
+// post add
+app.post("/api/users/add", (req, res) => {
+  const { id, name } = req.body
+  const user = users.concat({ id, name })
+  res.json({ok: true, user: user})
+})
+
+// put
+app.put("/api/users/update", (req, res) => {
+  const { id, name } = req.body
+  const user = users.map(data => {
+    if(data.id == id) data.name = name
+
+    return {
+      id : data.id,
+      name : data.name
+    }
+  })
+  res.json({ok: true, user: user})
+})
+
+// patch
+app.patch("/api/users/update/:user_id", (req, res) => {
+  const { user_id } = req.params
+  const { name } = req.body
+
+  const user = users.map(data => {
+    if(data.id == user_id) data.name = name
+
+    return {
+      id : data.id,
+      name : data.name
+    }
+  })
+  res.json({ok: true, user: user})
+})
+
+// delete
+app.delete("/api/users/delete", (req, res) => {
+  const { user_id } = req.body
+  const user = users.filter(data => data.id != user_id )
+  res.json({ok: true, user: user})
 })
 
 module.exports = app;
