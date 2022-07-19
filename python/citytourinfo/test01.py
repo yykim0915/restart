@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-
+ 
 # def f(x):
 # 	k = 10*x + 5
 # 	return k
@@ -32,4 +32,3 @@ import pandas as pd
 #dropna(axis=0) null값 제거
 # df_drop_sample = df_mapsample.dropna(axis=0)
 #-----------------------------
- 

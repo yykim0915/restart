@@ -6,16 +6,30 @@ import xml.etree.ElementTree as ET
 import folium
 import os
 import webbrowser
+from pymongo import MongoClient
 
+client = MongoClient("mongodb://3.38.64.25:27017")
+db = client['test'] #DBname(test)에 접속
 
-fname = '/data/mongo/citytourinfo.csv'
-score = pd.read_csv(fname, encoding = 'cp949')
-print(score)
+#--------------------
+# fname = '/data/mongo/citytourinfo.csv'
+# score = pd.read_csv(fname, encoding = 'cp949')
+# print(score)
 #print(score.head(2))  #row 1,2행 출력
+#--------------------
 
+
+#test(db)-citytourinfo(collection) 데이터 출력하기
+for d in db['citytourinfo'].find():
+    print(d['SIGUN_CD'], d['SIGUN_NM'], d['CITYTOUR_COURSE'], d['CITYTOUR_COURSE_INFO'], d['addr'], d['latitude'], d['longitude'])
+#print(db.citytourinfo.find_one({'CITYTOUR_COURSE':'가평시티투어'})['text']) #1행 출력
+
+#--------------------
 #map에 필요한 column만 저장
-# df_mapsample = df['CITYTOUR_COURSE','CITYTOUR_COURSE_INFO','addr','latitude','longitude']
-# print(df_mapsample)
+df_mapsample = df['CITYTOUR_COURSE','CITYTOUR_COURSE_INFO','latitude','longitude']
+    print(df_mapsample)
+#--------------------
+
 
 #map 시각화하기(zoom값은 0~20까지)
 def citytourinfo_map(default_location=[35.53898, 129.31125], default_zoom_start=20):

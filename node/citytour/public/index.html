@@ -17,18 +17,18 @@
 
     if ( code != "" ) {
       //-- weather ----------------------
-      document.iframe2.location.href="http://54.215.67.224:8080/weather/"+sg_name;
+      document.iframe2.location.href="http://3.38.64.25:8080/weather/"+sg_name;
       //-- rank -----------------------
-      //document.targetRank.location.href="http://54.215.67.224:3000/rank";
+      //document.targetRank.location.href="http://3.38.64.25:3000/rank";
 
       //-- map ----------------------
-      document.iframe.location.href="http://54.215.67.224:8080/map/"+ searchStr;
+      document.iframe.location.href="http://3.38.64.25:8080/map/"+ searchStr;
 
       //-- 숙박정보
-      document.iframe1.location.href="http://54.215.67.224:3000/accom?sg_cd="+ code;
+      document.iframe1.location.href="http://3.38.64.25:3000/accom?sg_cd="+ code;
 
       //-- 시티투어정보 ----------------------
-      document.iframe3.location.href="http://54.215.67.224:3000/citytourinfo?sg_cd="+ code;
+      document.iframe3.location.href="http://3.38.64.25:3000/citytourinfo?sg_cd="+ code;
     } else{
       alert("지역을 선택하세요");
 
@@ -41,9 +41,9 @@
     //alert(code);
     if ( code != "" ) {
       if ( div == 1 ) {
-        document.iframe1.location.href="http://54.215.67.224:3000/accom?sg_cd="+ code;
+        document.iframe1.location.href="http://3.38.64.25:3000/accom?sg_cd="+ code;
       } else {
-        document.iframe1.location.href="http://54.215.67.224:3000/tourarea?sg_cd="+ code;
+        document.iframe1.location.href="http://3.38.64.25:3000/tourarea?sg_cd="+ code;
       }
     } else {
       alert("검색할 지역을 선택해주세요");
@@ -55,6 +55,16 @@
 </head>
 <body class="body" >
 <div class="main">
+  <!--번역기-->
+<div id="google_translate_element"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'ko', includedLanguages: 'ko,en,ja,zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+   <!--번역 끝-->
+   
   <div class="ctSearch">City Tour Search</div>
 
   <form method="post" action='' name="userForm" >
@@ -82,7 +92,7 @@
     <div >
 
         <!--지도 iframe-->
-        <iframe name="iframe" id="iframe" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" width="400px" cellpadding="0" cellspacing="0" height="350px" align="right" src="http://54.215.67.224:8080/map"></iframe>
+        <iframe name="iframe" id="iframe" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" width="400px" cellpadding="0" cellspacing="0" height="350px" align="right" src="http://3.38.64.25:8080/map"></iframe>
 
 
         <!--지도 끝 iframe-->
@@ -120,7 +130,7 @@
 
   <!--인기 시티투어 테이블 -->
   <div class="tourtable">
-     <iframe name="iframe4" id="iframe4" src="http://54.215.67.224:3000/rank" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" width="193px" height="243px" cellpadding="0" cellspacing="0"  align="right"></iframe>
+     <iframe name="iframe4" id="iframe4" src="http://3.38.64.25:3000/rank" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" width="193px" height="243px" cellpadding="0" cellspacing="0"  align="right"></iframe>
   </div>
 
 
@@ -130,7 +140,7 @@
   <div class="weatherinfo" style="display: flex; align-items: center; padding-left: 10px">
 
 	   <!--날씨 iframe-->
-        <iframe name="iframe2" id="iframe2" src="http://54.215.67.224:8080/weather" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" cellpadding="0" height="54px"  width="200px" align="right" ></iframe>
+        <iframe name="iframe2" id="iframe2" src="http://3.38.64.25:8080/weather" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" cellpadding="0" height="54px"  width="200px" align="right" ></iframe>
 
         <!--날씨 끝 iframe-->
 

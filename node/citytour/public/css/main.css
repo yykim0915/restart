@@ -297,6 +297,16 @@ background: #FFFFFF;
 
 }
 
+#google_translate_element{
+
+position: absolute;
+
+left: 8px;
+top: 438px;
+z-index: 1;
+
+
+}
 
 
 /*
