@@ -33,14 +33,16 @@ db = client['test'] #DBname-test에 접속
 
 
 #test(db)-citytourinfo(collection) 데이터 출력하기
-for d in db['citytourinfo'].find():
-    print(d['SIGUN_CD'], d['SIGUN_NM'], d['CITYTOUR_COURSE'], d['CITYTOUR_COURSE_INFO'], d['addr'], d['latitude'], d['longitude'])
+# for d in db['citytourinfo'].find():
+    # print(d['SIGUN_CD'], d['SIGUN_NM'], d['CITYTOUR_COURSE'], d['CITYTOUR_COURSE_INFO'], d['addr'], d['latitude'], d['longitude'])
     #print(db.citytourinfo.find_one({'CITYTOUR_COURSE':'가평시티투어'})['text']) #1행 출력
+
+sql = "select SIGUN_CD, SIGUN_NM from citytourinfo"
 
 #map에 필요한 column만 저장
 # df_mapsample = df[['CITYTOUR_COURSE','CITYTOUR_COURSE_INFO','latitude','longitude']]
 # print(df_mapsample)
 
 #map에 필요한 column만 저장
-df = pd.DataFrame(data, columns=['CITYTOUR_COURSE_INFO', 'addr']) #시티투어코스정보,주소
-print(df)
+# df = pd.DataFrame(data, columns=['CITYTOUR_COURSE_INFO', 'addr']) #시티투어코스정보,주소
+# print(df)

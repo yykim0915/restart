@@ -14,9 +14,9 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://3.38.64.25/citytourdb')
+mongoose.connect('mongodb://3.38.64.25/st_db')
 
-var mongo = require('./routes/mongo.js')
+var mongo = require('./routes/restful.js')
 app.use('/', mongo)
 
 app.listen(app.get('port'), () => {

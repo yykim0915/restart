@@ -14,8 +14,10 @@ key='2a3b8662c28f474883d6d78ce9da3f28'
 url = f'https://openapi.gg.go.kr/Citytourinfostus?serviceKey={key}&'
 queryParams = urlencode({ quote_plus('pageNo') : 1,
                           quote_plus('numOfRows') : 10,
-                          quote_plus('SIGUN_CD'),    #시군코드:가평군(4182000000)
-                          quote_plus('SIGUN_NM')})   #시군명
+                          quote_plus('SIDO_NM') : 경기도,
+                          quote_plus('SIGNGU_NM') : 고양시})
+                          #quote_plus('SIGUN_CD') : 4182000000,    #시군코드:가평군(4182000000)
+                          #quote_plus('SIGUN_NM') : 고양시})        #시군명
 url2 = url + queryParams
 
 response = urlopen(url2)
