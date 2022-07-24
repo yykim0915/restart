@@ -48,45 +48,8 @@ sql = "select SIGUN_CD, SIGUN_NM, CITYTOUR_COURSE, CITYTOUR_COURSE_INFO, addr, l
 # print(df_mapsample)
 
 #map에 필요한 column만 저장
-# for d in db['citytourinfo'].find():
-#     print(d['CITYTOUR_COURSE'], d['latitude'], d['longitude'])
-# data = ['CITYTOUR_COURSE', 'latitude', 'longitude']
-# latitude = 37.8245457
-# longitude = 127.5154443
-
+for d in db['citytourinfo'].find():
+    print(d['CITYTOUR_COURSE'], d['latitude'], d['longitude'])
+data = ['CITYTOUR_COURSE', 'latitude', 'longitude']
 latitude = 37.8245457
 longitude = 127.5154443
-
-#map marker
-def citytourinfo_map(default_location=[latitude, longitude], default_zoom_start=20):
-    map_osm = folium.Map(location=[latitude, longitude], zoom_start=12)
-
-    for d in db['citytourinfo'].find():
-        print(d['CITYTOUR_COURSE'], d['latitude'], d['longitude'])
-    data = ['CITYTOUR_COURSE', 'latitude', 'longitude']
-
-    #itertuples - tuple을 반복하는 객체 반환
-    for row in df.itertuples():
-        CITYTOUR_COURSE, latitude, longitude = row[1:]
-        if CITYTOUR_COURSE == '가평시티투어':
-            icon = Icon(color = 'red', icon = 'info-sign')
-        elif CITYTOUR_COURSE == '여주시티투어':
-            icon = Icon(color = 'blue', icon = 'info-sign')
-        elif CITYTOUR_COURSE == '파주시티투어':
-            icon = Icon(color = 'yellow', icon = 'info-sign')
-        else:
-            break
-
-    for row in df.itertuples():
-        CITYTOUR_COURSE, latitude, longitude = row[1:]
-        print(row)
-
-    folium.Marker([latitude, longitude],
-                  icon=folium.Icon(color='red', icon='star'),
-                  popup='<iframe width="500" height="300" src="https://www.daum.net/" title="daum사이트" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
-                  tooltip='big data').add_to(map_osm)
-    map_osm.save('./data/map_citytourInfo04.html')
-    webbrowser.open('file://'+ os.path.realpath('./data/map_citytourInfo04.html'))
-
-print('map save')
-citytourinfo_map()
