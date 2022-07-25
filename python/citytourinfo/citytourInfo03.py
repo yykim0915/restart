@@ -3,21 +3,23 @@ import folium
 from folium import Marker, Icon, CircleMarker
 from pymongo import MongoClient
 
-# client = MongoClient("mongodb://3.38.64.25:27017")
-# db = client['test'] #DBname(test)에 접속
-# sql = "select SIGUN_CD, SIGUN_NM, CITYTOUR_COURSE, CITYTOUR_COURSE_INFO, addr, latitude, longitude from citytourinfo"
+client = MongoClient("mongodb://3.38.64.25:27017")
+db = client['test'] #DBname(test)에 접속
+sql = "select SIGUN_CD, SIGUN_NM, CITYTOUR_COURSE, CITYTOUR_COURSE_INFO, addr, latitude, longitude from citytourinfo"
 
 #test(db)-citytourinfo(collection) 데이터 출력하기
-# for d in db['citytourinfo'].find():
-    # print(d['SIGUN_CD'], d['SIGUN_NM'], d['CITYTOUR_COURSE'], d['CITYTOUR_COURSE_INFO'], d['addr'], d['latitude'], d['longitude'])
+for d in db['citytourinfo'].find():
+    print(d['SIGUN_CD'], d['SIGUN_NM'], d['CITYTOUR_COURSE'], d['CITYTOUR_COURSE_INFO'], d['addr'], d['latitude'], d['longitude'])
 #print(db.citytourinfo.find_one({'CITYTOUR_COURSE':'가평시티투어'})['text']) #1행 출력
 
 #--------------------
-fname = '/data/mongo/citytourinfo.csv'
-df = pd.read_csv(fname, encoding = 'cp949')
-print(df)
-print(df.head(2))  #row 1,2행 출력
+# fname = '/data/mongo/citytourinfo.csv'
+# df = pd.read_csv(fname, encoding = 'cp949')
+# print(df)
+# print(df.head(2))  #row 1,2행 출력
 #--------------------
+df = pd.DataFrame([SIGUN_CD, SIGUN_NM, CITYTOUR_COURSE, CITYTOUR_COURSE_INFO, addr, latitude, longitude])
+print(df)
 
 #map에 필요한 column만 변수에 저장
 df_sample = df[['CITYTOUR_COURSE', 'CITYTOUR_COURSE_INFO', 'latitude', 'longitude']]

@@ -20,7 +20,7 @@ queryParams += '&' + encodeURIComponent('COURSE_ID') + '=' + encodeURIComponent(
 
 //define scheme
 var dataSchema = mongoose.Schema({
-      courseAreaId : Varchart
+      courseAreaId : Number
       courseAreaName : Varchart
       maxTa : Number
       minTa : Number

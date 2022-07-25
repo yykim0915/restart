@@ -2,32 +2,19 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>citytourinfo</title>
+<title>keyungido-citytourinfo</title>
 <script>
-//== 검색 버튼 . search button event ======
+//search button
 function reload2(){
-  var code = document.userForm.local.value;
-  var searchStr = code +"+"+document.userForm.srch_word.value;
-  var target = document.getElementById("local");
-  var sg_name = target.options[target.selectedIndex].text;
-  //alert(searchStr);
 
-  if ( code != "" ) {
-    //-- map ----------------------
-    document.iframe.location.href="http://3.38.64.25:8080/map/"+ searchStr;
-
-  } else{
-    alert("지역을 선택하세요");
-
-  }
 }
 </script>
 </head>
 <body>
 
+<!-- 검색
 <form method="post" action='' name="userForm" >
 <div class="ctSearch01" style="display: flex; align-items: center">
-  <!-- 검색 창 ------------------------------------->
     <select title="지역" name="local" id="local">
       <option value="">지역선택</option>
       <option value="41820">가평군</option>
@@ -38,21 +25,34 @@ function reload2(){
     </select>
     &nbsp;
     <input type="text" name="srch_word" size='10'>  &nbsp;
-    <a href="#" onclick="javascript:reload2();"><img src="./img/search_button.png" width="25" height="25" alt=""/> </a>
+    <a href="#" onclick="javascript:reload2();">go</a>
 </div>
 </form>
+//검색 -->
 
-<!--지도 iframe-->
+
+<!-- 지도 -->
 <div class="mapbody"></div>
 <div class="mapsicleMap">
   <div >
-      <!--지도 iframe-->
-      <iframe name="iframe" id="iframe" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" width="400px" cellpadding="0" cellspacing="0" height="350px" align="right" src="http://3.38.64.25:8080/map"></iframe>
-      <!--지도 끝 iframe-->
+      <!-- 지도 iframe -->
+      <iframe src="http://3.38.64.25:8080/map" id="iframe" name="iframe" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" cellpadding="0" cellspacing="0" width="400px" height="350px" align="right"></iframe>
+      <!-- //지도 iframe -->
   </div>
 </div>
-<!--//지도 iframe-->
+<!-- //지도 -->
 
- 
+
+<!-- 날씨 -->
+<div class="weatherbg"> </div>
+<div class="weathertext">날씨</div>
+<div class="weatherinfo" style="display: flex; align-items: center; padding-left: 10px">
+   <!-- 날씨 iframe -->
+   <iframe src="http://3.38.64.25:3000/weather" id="iframe2" name="iframe2" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" cellpadding="0" width="200px" height="54px" align="right" ></iframe>
+   <!-- //날씨 iframe-->
+
+</div>
+<!-- //날씨 -->
+
 </body>
 </html>
