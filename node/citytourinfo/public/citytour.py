@@ -11,21 +11,20 @@ import requests
 # from pymongo import MongoClient
 # client = MongoClient("mongodb://3.38.64.25:27017")
 # db = client['test']
-#db = client['st_db']
 
-# for d in db['accom_tb'].find():
-    # print(d['sg_cd'], d['ac_name'])
+# for d in db['citytourinfo'].find():
+    # print(d['CITYTOUR_COURSE'], d['CITYTOUR_COURSE_INFO'])
 
-#-------------------------------
-#-------------------------------
 fname = '/data/mongo/citytourinfo.csv'
 df = pd.read_csv(fname, encoding = 'cp949')
 print(df)
 
+#-------------------------------
+#-------------------------------
 #map정보
 @route('/map')
-@route('/map/<CITYTOUR_COURSE>')
-def index(CITYTOUR_COURSE='가평시티투어'):
+def index(name='World'):
+#def index(CITYTOUR_COURSE='가평시티투어'):
     print('== map page start ========>')
 
     #map에 필요한 column만 변수에 저장
@@ -59,7 +58,7 @@ def index(CITYTOUR_COURSE='가평시티투어'):
             Marker(location=[latitude,longitude], popup=f'정류장 이름 : {CITYTOUR_COURSE_INFO}', icon = icon).add_to(base_map)
 
         #map 저장하기
-        base_map.save('map_citytourInfo03.html')
+        base_map.save('map_citytour.html')
         return base_map
 
     #지도 출력하기
@@ -90,5 +89,5 @@ def index(CITYTOUR_COURSE='가평시티투어'):
 # 	return citytour_page
 #-------------------------------
 #-------------------------------
-
+    return 'Hello %s' % name
 run(host='0.0.0.0', port=8080, threaded=True)

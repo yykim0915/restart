@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <title>keyungido-citytourinfo</title>
+<style type="text/css">
+h1 {font-size: 16px;}
+
+</style>
 <script>
 //search button
 function reload2(){
@@ -30,27 +34,19 @@ function reload2(){
 </form>
 //검색 -->
 
+<h1>Keyungido-Citytour</h1>
 
-<!-- 지도 -->
-<div class="mapbody"></div>
-<div class="mapsicleMap">
-  <div >
-      <!-- 지도 iframe -->
-      <iframe src="http://3.38.64.25:8080/map" id="iframe" name="iframe" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" cellpadding="0" cellspacing="0" width="400px" height="350px" align="right"></iframe>
-      <!-- //지도 iframe -->
-  </div>
+<!-- 지도  -->
+<div class="map_contents">
+    <h2 class="">map</h2>
+    <iframe src="http://3.38.64.25:8080/map" id="iframe" name="iframe_map" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" cellpadding="0" cellspacing="0" width="400px" height="350px" align="right"></iframe>
 </div>
 <!-- //지도 -->
 
-
 <!-- 날씨 -->
-<div class="weatherbg"> </div>
-<div class="weathertext">날씨</div>
-<div class="weatherinfo" style="display: flex; align-items: center; padding-left: 10px">
-   <!-- 날씨 iframe -->
-   <iframe src="http://3.38.64.25:3000/weather" id="iframe2" name="iframe2" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" cellpadding="0" width="200px" height="54px" align="right" ></iframe>
-   <!-- //날씨 iframe-->
-
+<div class="weather_contents">
+    <h2 class="">weather</h2>
+    <iframe src="http://3.38.64.25:3000/weather" id="iframe2" name="iframe_weather" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" cellpadding="0" width="200px" height="54px" align="right" ></iframe>
 </div>
 <!-- //날씨 -->
 
